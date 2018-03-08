@@ -1,107 +1,77 @@
 #include "Patient.h"
 #include "Nurse.h"
-#include <iostream>
 
-// default constructor
-Patient::Patient()
-{
-	setAge(0);
-	setName("Pe6o");
-	setIllness("Cold");
-	setFloor(5);
-	setNurse(nullptr);
-}
-
-// constructor with parameters
-Patient::Patient(char const* _name, int _age, char const* _illness,
-	int _floor, Nurse* _nurse)
-{
-	setAge(_age);
-	setName(_name);
-	setIllness(_illness);
-	setFloor(_floor);
-	setNurse(nurse);
-}
-
-// setters
 void Patient::setName(char const* _name)
 {
-	if (strlen(_name) >= 50)
-		std::cout << "Too much length in name!\n";
+	int len = strlen(_name) + 1;
+	if (len < 50)
+		strcpy_s(this->name, len, _name);
 	else
-		strcpy_s(name, strlen(_name) + 1, _name);
-}
-
-void Patient::setAge(int _age)
-{
-	if (_age < 0 || _age > 120)
-		std::cout << "Invalid age!" << std::endl;
-	else
-		age = _age;
+		std::cout << "Too much length!";
 }
 
 void Patient::setIllness(char const* _illness)
 {
-	if (strlen(_illness) >= 50)
-		std::cout << "Too much length in illness!\n";
+	int len = strlen(_illness) + 1;
+	if (len < 50)
+		strcpy_s(this->illness, len, _illness);
 	else
-		strcpy_s(illness, strlen(_illness) + 1, _illness);
+		std::cout << "Too much length!";
 }
 
-void Patient::setFloor(int _floor)
+Patient::Patient(char const* _name, int _age, char const* _illness,
+	int _floorInHospital, Nurse const* _nurse)
 {
-	if (_floor < 0 || _floor > 10)
-		std::cout << "Invalid floor!\n";
+	setAge(_age);
+	setName(_name);
+	setNurse(_nurse);
+	setFloorInHospital(_floorInHospital);
+	setIllness(_illness);
+}
+
+void Patient::setNurse(Nurse const* _nurse)
+{
+	this->nurse = _nurse;
+}
+
+void Patient::setAge(int _age) 
+{
+	if (_age >= 0 && _age <= 120)
+		this->age = _age;
 	else
-		floor = _floor;
+	{
+		this->age = 0;
+		std::cout << "Invalid age! Set to 0";
+	}		
 }
 
-void Patient::setNurse(Nurse* _nurse)
+void Patient::setFloorInHospital(int _floorInHospital)
 {
-	nurse = _nurse;
+	if (_floorInHospital >= 0 && _floorInHospital <= 10)
+		this->floorInHospital = _floorInHospital;
+	else
+	{
+		this->floorInHospital = 0;
+		std::cout << "Invalid floor! Set to 0";
+	}
 }
 
-// getters
-char const* Patient::getName() const
-{
-	return name;
-}
-
-int Patient::getAge() const
-{
-	return age;
-}
-
-char const* Patient::getIllness() const
-{
-	return illness;
-}
-
-int Patient::getFloor() const
-{
-	return floor;
-}
-
-Nurse* Patient::getNurse() const
-{
-	return nurse;
-}
-
-// utility methods
 void Patient::print() const
 {
-	std::cout << "Patient name: " << name << std::endl;
-	std::cout << "Ilness: " << illness << std::endl;
-	std::cout << "Age: " << age << std::endl;
-	std::cout << "Floor: " << floor << std::endl;
-
-	if (nurse == nullptr)
-		std::cout << "Nobody takes care of him currently.\n";
+	std::cout << "Patient name: " << this->name << '\n';
+	std::cout << "Age: " << this->age << '\n';
+	std::cout << "Illness: " << this->illness << '\n';
+	std::cout << "Floor: " << this->floorInHospital << '\n';
+	if (this->nurse != nullptr)
+		std::cout << "Nurse taking care of him: " << this->nurse->getName() << '\n';
 	else
-		std::cout << "Nurse " << nurse->getName() << std::endl;
+		std::cout << "No nurse is taking care of him!\n";
 }
 
 void Patient::callNurse() const
 {
-	std::cout << "Patient " << name << " calls for help!\n";
+	if (this->nurse != nullptr)
+		std::cout << "Patient " << this->name << " needs help from nurse " << this->nurse->getName() << "!\n";
+	else
+		std::cout << "Patient " << this->name << " needs help, no nurse takes care of him!\n";
 }
