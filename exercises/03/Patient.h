@@ -1,6 +1,8 @@
 #ifndef _PATIENT_H
 #define _PATIENT_H
 
+#include <iostream>
+
 class Nurse;
 
 class Patient
@@ -9,34 +11,33 @@ private:
 	char name[50];
 	int age;
 	char illness[50];
-	int floor;
-	Nurse* nurse;
+	int floorInHospital;
+	Nurse const* nurse;
 
 public:
-	// default constructor
-	Patient();
-
-	// constructor with parameters
-	Patient(char const* _name, int _age, char const* illness,
-		int _floor, Nurse* _nurse);
+	// constructors
+	// default constructor and constructor with parameters simultaneously
+	Patient(char const* _name = "", int _age = 0, char const* _illness = "",
+		int _floorInHospital = 0, Nurse const* _nurse = nullptr);
 
 	// setters
 	void setName(char const* _name);
 	void setAge(int _age);
-	void setIllness(char const* _name);
-	void setFloor(int _floor);
-	void setNurse(Nurse* _nurse);
+	void setIllness(char const* _illness);
+	void setFloorInHospital(int _floorInHospital);
+	void setNurse(Nurse const* _nurse);
 
 	// getters
-	char const* getName() const;
-	int getAge() const;
-	char const* getIllness() const;
-	int getFloor() const;
-	Nurse* getNurse() const;
+	char const* getName() const { return name; }
+	int getAge() const { return age; }
+	char const* getIllness() const { return illness; };
+	int getFloorInHospital() const { return floorInHospital; };
+	Nurse const* getNurse() const { return nurse; }
 
 	// utility methods
-	void print() const;
 	void callNurse() const;
+
+	void print() const;
 };
 
-#endif
+#endif 
