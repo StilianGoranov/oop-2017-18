@@ -4,3 +4,4 @@
 * [Упражнение 3](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/03) (класове - абстракция, конструктори, get/set функции)
 * [Упражнение 4](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/04) (примери за работа с динамична памет + голяма четворка)
 * [Упражнение 5](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/05) (задача за динамична памет и канонично представяне на клас (голяма четворка))
+* [Упражнение 6](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/06) (Оператори. Приятеслки функции.)
