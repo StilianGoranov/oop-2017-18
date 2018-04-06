@@ -54,10 +54,10 @@ cin>>
 
 ### Задача 2
 
-Да се напише структура Appointment:
+Да се напише клас Appointment:
 
 ```c++
-struct Appointment
+class Appointment
 {
   Time time;
   char* person;
