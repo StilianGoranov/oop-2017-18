@@ -57,11 +57,11 @@ public:
             clear();
             copy(other);
         }
-        
+
         return *this;
     }
-    
-    ~SortedList() 
+
+    ~SortedList()
     {
         clear();
     }
@@ -118,9 +118,8 @@ public:
         {
             auto temp = first;
             first = first->next;
-            delete temp;
-
             ++it;
+            delete temp;
 
             if (!first)
                 // no elements left
@@ -129,7 +128,7 @@ public:
                 return true;
             }
 
-            // at least 1 element left 
+            // at least 1 element left
             first->prev = nullptr;
             return true;
 
@@ -139,17 +138,17 @@ public:
             // surely there are at least 2 elements in the list
             // (if only 1 elements -> that would've been the previous case)
             last = last->prev;
+            ++it;
             delete last->next;
             last->next = nullptr;
-            ++it;
             return true;
         } else
             // erase at middle
         {
             it.ptr->prev->next = it.ptr->next;
             it.ptr->next->prev = it.ptr->prev;
-            delete it.ptr;
             ++it;
+            delete it.ptr;
             return true;
         }
     }
