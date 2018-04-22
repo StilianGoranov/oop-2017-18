@@ -55,7 +55,7 @@ void doSomething(stack<T>& st, pushingFunction<T> specialPush)
     if (st.empty()) return;
     T temp = st.top();
     st.pop();
-    doSomething(st, push);
+    doSomething(st, specialPush);
     specialPush(st, temp);
 }
 int main()
