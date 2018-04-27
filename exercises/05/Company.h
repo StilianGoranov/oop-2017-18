@@ -46,8 +46,8 @@ Company::Company(char const* _name)
 }
 
 Company::Company(Company const& company)
-	: Company(company.name)
 {
+	setName(company.name);
 	copyWorkers(company);
 }
 
