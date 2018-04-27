@@ -14,6 +14,7 @@ private:
 
 	void copyWorkers(Company const& company);
 	void resize(int newCapacity);
+	void erase();
 
 public:
 	// big 4
@@ -24,7 +25,7 @@ public:
 
 	// setters and getters
 	void setName(char const* _name);
-	
+
 	char const* getName() const { return name; }
 	int getSize() const { return size; }
 	int getCapacity() const { return capacity; }
@@ -38,12 +39,13 @@ public:
 };
 
 Company::Company(char const* _name)
-	: name(nullptr), workers(nullptr), size(0), capacity(0)
+	: name(nullptr), size(0), capacity(1)
 {
+	workers = new Worker[1];
 	setName(_name);
 }
 
-Company::Company(Company const& company) 
+Company::Company(Company const& company)
 	: Company(company.name)
 {
 	copyWorkers(company);
@@ -53,6 +55,7 @@ Company& Company::operator=(Company const& company)
 {
 	if (this != &company)
 	{
+		erase();
 		setName(company.name);
 		copyWorkers(company);
 	}
@@ -62,8 +65,7 @@ Company& Company::operator=(Company const& company)
 
 Company::~Company()
 {
-	delete[] name;
-	delete[] workers;
+	erase();
 }
 
 void Company::addWorker(Worker const& newWorker)
@@ -91,7 +93,7 @@ void Company::removeByName(char const* name)
 		resize(capacity / 2);
 		std::cout << "Capacity reduced twice!\n";
 	}
-		
+
 }
 
 void Company::resize(int newCapacity)
@@ -99,6 +101,7 @@ void Company::resize(int newCapacity)
 	if (newCapacity == 0)
 	{
 		workers = new Worker[1];
+		size = 0;
 		capacity = 1;
 	}
 
@@ -119,26 +122,20 @@ void Company::resize(int newCapacity)
 		std::cout << "Possible loss of data! Did not change capacity!" << std::endl;
 }
 
+void Company::erase()
+{
+	delete[] name;
+	delete[] workers;
+}
+
 void Company::copyWorkers(Company const& company)
 {
-	delete[] workers;
+	workers = new Worker[company.capacity];
+	capacity = company.capacity;
+	size = company.size;
 
-	if (company.workers == nullptr)
-	{
-		workers = nullptr;
-		capacity = 0;
-		size = 0;
-	}
-	
-	else
-	{
-		workers = new Worker[company.capacity];
-		capacity = company.capacity;
-		size = company.size;
-
-		for (int i = 0; i < company.size; ++i)
-			workers[i] = company.workers[i];
-	}
+	for (int i = 0; i < company.size; ++i)
+		workers[i] = company.workers[i];
 }
 
 void Company::setName(char const* _name)
