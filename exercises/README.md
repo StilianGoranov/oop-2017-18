@@ -7,3 +7,4 @@
 * [Упражнение 6](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/06) (Оператори. Приятелски функции.)
 * [Упражнение 7](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/07) (реализация на SortedList + абстракция за итератор + тестове)
 * [Упражнение 8](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/08) (работа със структура от данни stack)
+* [Упражнение 9](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/09) (примери за полиморфизъм, dynamic_cast и виртуален деструктор)
