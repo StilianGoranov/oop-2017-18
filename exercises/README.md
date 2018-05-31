@@ -11,3 +11,5 @@
 * [Упражнение 10](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/10) (multiple inheritance, virtual base class and diamond problem)
 * [Упражнение 11](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/11) (Questions - задача за абстрактен клас и полиморфизъм)
 * [Упражнение 12](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/12) (Formula - задача за абстрактен клас и полиморфизъм)
+* [Упражнение 13](https://github.com/stiliangoranov/oop-2017-18/tree/master/exercises/13) (Launcher - задача за полиморфизъм, интерфейси и диамант)
+
