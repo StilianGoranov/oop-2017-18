@@ -1,0 +1,38 @@
+#ifndef LAUNCHERITEM_H
+#define LAUNCHERITEM_H
+
+#include <string>
+#include "Cloneable.h"
+#include "Printable.h"
+
+class LauncherItem : public Cloneable, virtual public Printable
+{
+protected:
+    std::string name;
+    
+public:
+    LauncherItem(std::string const& _name = "DefaultName")
+        : name{_name}
+    {}
+    
+    std::string const& getName() const { return name; }
+    void setName(std::string const& _name) { name = _name; }
+    
+    virtual bool canMove() const = 0;
+    
+    LauncherItem* clone() const override = 0;
+    
+    virtual void print(std::ostream& os = std::cout) const override 
+    {
+        os << name;
+    }
+    
+    friend std::ostream& operator<<(std::ostream& os, LauncherItem const& li)
+    {
+        li.print(os);
+        return os;
+    }
+    
+};
+
+#endif
