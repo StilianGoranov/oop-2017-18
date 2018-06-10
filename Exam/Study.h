@@ -12,24 +12,17 @@ class Study : public Cloneable
 {
 private:
     string name = "DefaultStudyName";
-    double minBound = 0;
-    double maxBound = 10;
-    
+
 public:
-    Study(string _name = "DefaultStudyName", double _minBound = 0, double _maxBound = 10)
+    Study(string _name = "DefaultStudyName")
     {
-        setMaxBound(_maxBound);
-        setMinBound(_minBound);
         setName(_name);
     }
     
-    void setMinBound(double _minBound) { minBound = _minBound; }
-    void setMaxBound(double _maxBound) { maxBound = _maxBound; }
     void setName(string _name) { name = _name; }
     
     string getName() const { return name; }
-    auto getMinBound() const { return minBound;}
-    auto getMaxBound() const { return maxBound; }
+    
     
     virtual Study* clone() const override = 0;
     virtual double getPrice() const = 0;
@@ -41,12 +34,16 @@ class SingleStudy : public Study
 private:
     double price;
     double timeForExecution;
+    double minBound = 0;
+    double maxBound = 10;
     
 public:
     SingleStudy(string _name = "DefaultName", double _price = 0, double _timeForExecution = 0, double _minBound = 0, double _maxBound = 10)
-        : Study(_name, _minBound, _maxBound)
+        : Study(_name)
     {
         setPrice(_price);
+        setMaxBound(_maxBound);
+        setMinBound(_minBound);
         setTimeForExecution(_timeForExecution);
     }
     
@@ -61,6 +58,12 @@ public:
         assert(_timeForExecution > 0);
         timeForExecution = _timeForExecution;
     }
+    
+    void setMinBound(double _minBound) { minBound = _minBound; }
+    void setMaxBound(double _maxBound) { maxBound = _maxBound; }
+    
+    auto getMinBound() const { return minBound;}
+    auto getMaxBound() const { return maxBound; }
     
     virtual double getPrice() const override { return price; }
     virtual double getTimeForExecution() const override { return timeForExecution; }
@@ -86,8 +89,8 @@ private:
     }
     
 public:
-    PackageStudy(string _name = "DefaultName", double _minBound = 0, double _maxBound = 10)
-        : Study(_name, _minBound, _maxBound)
+    PackageStudy(string _name = "DefaultName")
+        : Study(_name)
     {}
     
     PackageStudy(PackageStudy const& other)
