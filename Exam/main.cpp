@@ -5,7 +5,7 @@ void laboratoryDemo()
 {
     Laboratory lab;
     
-    PackageStudy packageStudy("packagestudy1", -3, 5);
+    PackageStudy packageStudy("packagestudy1");
     packageStudy.addStudy(SingleStudy("pstudy1", 500, 18, -300, 1000));
     packageStudy.addStudy(SingleStudy("pstudy2", 300, 1, -400, 700));
 
