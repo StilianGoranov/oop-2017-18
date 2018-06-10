@@ -11,7 +11,7 @@ using std::string;
 class Study : public Cloneable
 {
 private:
-    string name = "DefaultStudyName";
+    string name;
 
 public:
     Study(string _name = "DefaultStudyName")
